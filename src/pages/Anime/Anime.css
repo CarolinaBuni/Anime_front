@@ -1,0 +1,156 @@
+:root {
+    --comment-icon-size: 30px;
+    --comment-rating-size: 20px;
+}
+
+.anime-details {
+    color: var(--font-color);
+    padding: var(--padding-m);
+}
+
+.anime-details h1 {
+    font-size: var(--font-size-m);
+    margin-bottom: var(--margin-s);
+}
+
+.anime-image {
+    height: auto;
+    margin-bottom: var(--margin-s);
+    max-width: 500px;
+    width: 100%;
+}
+
+.anime-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.anime-container>p:first-of-type {
+    max-width: 60%;
+}
+
+.anime-details>h2 {
+    text-align: center;
+}
+
+.anime-details p {
+    margin: var(--margin-xs) 0;
+}
+
+strong {
+    color: var(--highlight-color);
+}
+
+.anime-section {
+    align-items: center;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding-bottom: 100px;
+    padding-top: 100px;
+    row-gap: 30px;
+}
+
+.back-button {
+    background-color: var(--primary-color);
+    border-radius: var(--border-radius-xs);
+    border: none;
+    color: var(--font-color);
+    cursor: pointer;
+    margin-bottom: 20px;
+    padding: var(--padding-s) 20px;
+}
+
+.back-button:hover {
+    background-color: var(--hover-color);
+}
+
+.comments-section {
+    margin-top: var(--comment-rating-size);
+}
+
+.comment {
+    border-bottom: 1px solid var(--border-color);
+    padding: var(--padding-s) 0;
+    position: relative;
+}
+
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: var(--margin-xs);
+}
+
+.comment-user {
+    font-weight: bold;
+}
+
+.comment-date {
+    color: var(--secondary-text-color);
+    font-size: 0.9em;
+}
+
+.comment-body {
+    padding-left: var(--padding-s);
+}
+
+.edit-comment-icon {
+    cursor: pointer;
+    position: absolute;
+    right: 40px;
+    width: var(--comment-icon-size);
+}
+
+.delete-comment-icon {
+    cursor: pointer;
+    position: absolute;
+    right: 0px;
+    transition: all 0.5s;
+    width: var(--comment-icon-size);
+    z-index: 100;
+}
+
+.comment-rating img {
+    height: var(--comment-rating-size);
+    width: var(--comment-rating-size);
+}
+
+.comment-form {
+    margin-top: var(--comment-rating-size);
+    padding: var(--comment-rating-size);
+}
+
+.comment-form textarea,
+.comment-form input {
+    background-color: var(--background-color);
+    border-radius: var(--border-radius-xs);
+    border: 1px solid var(--border-color);
+    color: var(--font-color);
+    margin: var(--margin-xs) 0;
+    padding: var(--padding-s);
+    width: 100%;
+}
+
+.comment-form button {
+    background-color: var(--primary-color);
+    border-radius: var(--border-radius-xs);
+    border: none;
+    color: var(--font-color);
+    cursor: pointer;
+    padding: var(--padding-s) var(--comment-rating-size);
+}
+
+.comment-form button:hover {
+    background-color: var(--hover-color);
+}
+
+@media screen and (max-width: 390px) {
+    .anime-container>p:first-of-type {
+        max-width: none;
+    }
+    .anime-container {
+        padding-bottom: 50px;
+    }
+}

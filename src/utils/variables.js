@@ -1,0 +1,1 @@
+export const BASE_URL = "https://anime-back-jet.vercel.app/api/v1";

@@ -1,0 +1,29 @@
+header {
+     height: 5vh;
+     background-color: var(--background-color);
+}
+
+nav {
+     align-items: center;
+     display: flex;
+     height: 100%;
+     justify-content: space-evenly;
+     width: 100%;
+}
+
+nav a {
+     color: var(--font-color);
+     cursor: pointer;
+     font-family: "Lato", sans-serif;
+     font-size: var(--font-size-s);
+     font-style: normal;
+     font-weight: var(--font-weight-normal);
+     letter-spacing: 1.2px;
+     line-height: var(--line-height-s);
+     transition: ease 1.3s;
+}
+
+nav a:hover {
+     color: var(--highlight-color);
+     transition: ease 1.3s;
+}
