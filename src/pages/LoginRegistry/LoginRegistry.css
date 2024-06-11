@@ -59,8 +59,16 @@ form>button {
 }
 
 
-@media screen and (max-width: 390px) {
+@media screen and (max-width: 912px) {
      #login {
-          width: auto;
+          width: 100%;
      }
-}
+
+     .pointer-text {
+          font-weight: bolder;
+          background-color: aquamarine;
+          border-radius: 8px;
+          padding: 5px;
+     }
+};
+

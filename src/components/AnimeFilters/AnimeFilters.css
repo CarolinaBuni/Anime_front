@@ -66,6 +66,9 @@
           width: 100%;
           font-size: small;
      }
+     .post-anime-form__field {
+          width: auto;
+     }
 
      section {
           padding-top: 50px !important;
