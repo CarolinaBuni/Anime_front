@@ -41,7 +41,7 @@ const Login = ( elementoPadre ) => {
      elementoPadre.append( switchToRegister );
 
      form.addEventListener( 'submit', ( e ) => {
-          e.preventDefault();  // Prevenir el envío tradicional del formulario
+          e.preventDefault(); 
           submit( inputEmail.value, inputPassword.value, form );
      } );
 
@@ -80,7 +80,7 @@ const Register = ( elementoPadre ) => {
      elementoPadre.append( switchToLogin );
 
      form.addEventListener( 'submit', ( e ) => {
-          e.preventDefault();  // Prevenir el envío tradicional del formulario
+          e.preventDefault();  
           register( inputUserName.value, inputEmail.value, inputPassword.value, form, elementoPadre );
      } );
 
@@ -98,8 +98,6 @@ const submit = async ( email, password, form ) => {
           email: email,
           password: password
      };
-
-     console.log( "Login Request Data:", requestData );  // Verifica que los datos de la solicitud son correctos
 
      try {
           const data = await API( {

@@ -6,15 +6,15 @@ export function displayMessage( form, message, type = "error" ) {
           form.appendChild( messageElement );
      }
      messageElement.textContent = message;
-     messageElement.className = type; // Agregar clase para tipos de mensaje
+     messageElement.className = type; 
 };
 // Función para mostrar mensajes personalizados
 export const showMessagePostAnimes = ( message, type ) => {
      const messageContainer = document.getElementById( 'messageContainer' );
      messageContainer.innerHTML = `<div class="message ${ type }">${ message }</div>`;
-     messageContainer.style.display = 'block'; // Mostrar el contenedor
+     messageContainer.style.display = 'block'; 
      setTimeout( () => {
-          messageContainer.style.display = 'none'; // Ocultar el contenedor
+          messageContainer.style.display = 'none'; 
           messageContainer.innerHTML = '';
      }, 3000 );
 };
@@ -27,11 +27,11 @@ export function showMessageAnime( message, type ) {
           document.querySelector( 'section' ).appendChild( pError );
      }
      pError.textContent = message;
-     pError.className = type; // Agregar clase para tipos de mensaje
+     pError.className = type; 
 
-     pError.style.color = type === 'success' ? 'green' : 'red';  // Cambiar el color basado en el tipo de mensaje
+     pError.style.color = type === 'success' ? 'green' : 'red'; 
 
      setTimeout( () => {
-          pError.remove();  // Eliminar el mensaje después de 5 segundos
+          pError.remove();  
      }, 5000 );
 };

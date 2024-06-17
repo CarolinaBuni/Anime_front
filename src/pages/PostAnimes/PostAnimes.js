@@ -64,7 +64,6 @@ export const PostAnimes = () => {
                 </div>
             </div>
 
-
             <div class="post-anime-form__field">
                 <input class='addAnime' type="submit" value="Add Anime">
             </div>

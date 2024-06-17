@@ -13,7 +13,7 @@ export const getAnimes = async ( includeFilters = false ) => {
                endpoint: "/animes",
                method: "GET"
           } );
-          allAnimes = animes; // Guardar todos los animes
+          allAnimes = animes; 
           let userFavorites = [];
           let userWatchlist = [];
           const token = localStorage.getItem( "token" );
@@ -40,7 +40,7 @@ export const printAnimes = ( animes, userFavorites = [], userWatchlist = [], isA
      const hasAnimes = animes.length > 0;
 
      sectionAnimes.classList.remove('.anime-detail-section')
-     sectionAnimes.innerHTML = ''; // Limpiar la sección completamente
+     sectionAnimes.innerHTML = ''; 
 
      // Añadir filtros solo si no están ya presentes y se debe incluir filtros
      if ( includeFilters && !sectionAnimes.querySelector( '.filters-container' ) ) {
@@ -117,7 +117,7 @@ export const printAnimes = ( animes, userFavorites = [], userWatchlist = [], isA
                if ( isAdmin ) {
                     const deleteIcon = document.createElement( 'img' );
                     deleteIcon.className = 'delete-icon';
-                    deleteIcon.src = './assets/borrar.png'; // Ruta al icono de eliminación
+                    deleteIcon.src = './assets/borrar.png'; 
                     deleteIcon.alt = 'Delete';
                     deleteIcon.dataset.animeId = anime._id;
                     deleteIcon.addEventListener( 'click', ( event ) => deleteAnime( event ) );

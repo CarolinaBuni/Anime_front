@@ -1,9 +1,9 @@
 import { API } from "../../utils/API";
 import {  printAnimes } from "../Animes/Animes";
 import "./Profile.css";
-import "../PostAnimes/PostAnimes.css"; // Import the PostAnimes styles
+import "../PostAnimes/PostAnimes.css"; 
 import { configureDeleteModal } from "../../utils/modals";
-// Función para obtener y mostrar el perfil del usuario
+
 export const getProfile = async () => {
     try {
         // Obtener el ID del usuario desde el localStorage
@@ -13,30 +13,30 @@ export const getProfile = async () => {
             endpoint: `/users/${userId}`,
             method: "GET",
         });
-         // Mostrar el perfil del usuario
+
         showProfile(user);
         // Mostrar la lista de favoritos si existe
         if (user && user.favorites) {
             const favoritesContainer = document.getElementById('favoritesContainer');
-            favoritesContainer.innerHTML = ''; // Limpiar el contenedor de favoritos
-            printAnimes(user.favorites, user.favorites.map(fav => fav._id), user.watchlist.map(watch => watch._id), false, 'favoritesContainer'); // Pasamos los favoritos y especificamos el contenedor
+            favoritesContainer.innerHTML = ''; 
+            printAnimes(user.favorites, user.favorites.map(fav => fav._id), user.watchlist.map(watch => watch._id), false, 'favoritesContainer'); 
         }
         // Mostrar la lista de animes vistos si existe
         if (user && user.watchlist) {
             const watchlistContainer = document.getElementById('watchlistContainer');
-            watchlistContainer.innerHTML = ''; // Limpiar el contenedor de watchlist
+            watchlistContainer.innerHTML = ''; 
             printAnimes(user.watchlist, user.favorites.map(fav => fav._id), user.watchlist.map(watch => watch._id), false, 'watchlistContainer');
         }
     } catch (error) {
         console.error("Failed to fetch user's profile:", error);
     }
 };
-// Función para mostrar el perfil del usuario en la UI
+
 const showProfile = (user) => {
     const section = document.querySelector('section');
     section.innerHTML = ''; 
     section.className = 'profile-section';
-    // Crear el contenedor del perfil del usuario
+
     const userProfileContainer = document.createElement('div');
     userProfileContainer.id = 'userProfileContainer';
     userProfileContainer.innerHTML = `
@@ -57,7 +57,7 @@ const showProfile = (user) => {
     // Agregar el evento de eliminación de cuenta
     document.getElementById('deleteAccountButton').addEventListener('click', () => deleteAccount(user._id));
 };
-// Función para eliminar la cuenta del usuario
+
 const deleteAccount = async (userId) => {
     const confirmDeleteAccount = async () => {
         try {

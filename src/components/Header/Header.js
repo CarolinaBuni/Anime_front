@@ -28,7 +28,6 @@ const routes = [
     }
 ];
 
-
 const removeSpecialClasses = () => {
     const section = document.querySelector('section');
     if (section) {
@@ -44,7 +43,7 @@ export const Header = () => {
     const user = JSON.parse(localStorage.getItem('user'));
     const isAdmin = user?.rol === 'admin';
 
-    // Crear enlaces de navegación basados en las rutas definidas
+    // Crea enlaces de navegación basados en las rutas definidas
     routes.forEach(route => {
         const a = document.createElement('a');
         a.href = '#';

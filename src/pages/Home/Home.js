@@ -4,7 +4,6 @@ import './Home.css';
 export const Home = () => {
      const main = document.querySelector( 'main' );
 
-
      main.innerHTML = `
      <h2>
      Si eres un apasionado del anime, has llegado al lugar indicado. En Anime House, nos dedicamos a compartir contigo lo mejor del mundo del anime. Nuestra misión es ofrecerte información detallada y actualizada sobre tus series y películas de anime favoritas, así como descubrirte nuevas joyas que no te puedes perder.

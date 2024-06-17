@@ -10,7 +10,6 @@ export const Main = () => {
      <main></main>
      <section></section>
      `
-     // Inicializar el encabezado y la página principal
      Header();
      Home();
 };

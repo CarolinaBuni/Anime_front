@@ -94,7 +94,6 @@ export const deleteAnime = async ( event ) => {
      const deleteIcon = event.target;
      const animeId = deleteIcon.dataset.animeId;
 
-     // Crear y mostrar el modal
      let modal = document.getElementById( 'deleteModal' );
      if ( !modal ) {
           modal = createDeleteModal();
@@ -105,7 +104,6 @@ export const deleteAnime = async ( event ) => {
      const cancelButton = modal.querySelector( '#cancelDelete' );
      const closeButton = modal.querySelector( '.close' );
 
-     // Función para cerrar el modal
      const closeModal = () => {
           modal.style.display = 'none';
           confirmButton.removeEventListener( 'click', confirmDelete );
@@ -136,12 +134,10 @@ export const deleteAnime = async ( event ) => {
           }
      };
 
-     // Event listeners para los botones del modal
      confirmButton.addEventListener( 'click', confirmDelete );
      cancelButton.addEventListener( 'click', closeModal );
      closeButton.addEventListener( 'click', closeModal );
 
-     // Cerrar el modal si el usuario hace clic fuera del contenido del modal
      window.onclick = ( event ) => {
           if ( event.target == modal ) {
                closeModal();
@@ -243,7 +239,7 @@ const editAnime = async ( event, animeId ) => {
           const section = document.querySelector( 'section' );
           section.classList.remove( 'formSection' );
           section.style.display = 'flex';
-          await getAnimes( filterAnimes ); // Refresh the list of animes
+          await getAnimes( filterAnimes ); 
 
      } catch ( error ) {
           console.error( error );
