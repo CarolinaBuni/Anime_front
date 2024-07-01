@@ -1,5 +1,7 @@
+import { Loading } from '../../components/Loading/Loading';
 import { showMessagePostAnimes } from '../../utils/messages';
 import './PostAnimes.css';
+
 
 export const genresList = [
     'Action', 'Adventure', 'Science Fiction', 'Comedy', 'Drama', 'Slice of Life', 'Fantasy', 'Gore', 'Magic', 'Supernatural', 'Horror', 'Mystery', 'Psychological', 'Romance', 'Sci-Fi', 'Sports', 'Military', 'Historical', 'Thriller', 'Ecchi', 'Harem', 'Reverse Harem', 'Yaoi', 'Yuri', 'Moe', 'Shounen', 'Shoujo', 'Iyashikei', 'Seinen', 'Josei', 'Isekai', 'Magical Girl', 'Mecha', 'Cyberpunk', 'Space Opera', 'Martial Arts', 'Baseball', 'Soccer'
@@ -38,9 +40,14 @@ export const PostAnimes = () => {
                 <input type="number" id="episodes" name="episodes" class="post-anime-form__input" placeholder="Episodes" required>
             </div>
 
-            <div class="post-anime-form__field">
+             <div class="post-anime-form__field">
                 <label for="status"><svg class="icon"><use xlink:href="#icon-status"></use></svg><span class="hidden">Status</span></label>
-                <input type="text" id="status" name="status" class="post-anime-form__input" placeholder="Status" required>
+                <select id="status" name="status" class="post-anime-form__input" required>
+                    <option value="" disabled selected hidden>Status</option>
+                    <option value="Airing">Airing</option>
+                    <option value="Completed">Completed</option>
+                    <option value="Upcoming">Upcoming</option>
+                </select>
             </div>
 
             <div class="post-anime-form__field">
@@ -68,11 +75,19 @@ export const PostAnimes = () => {
                 <input class='addAnime' type="submit" value="Add Anime">
             </div>
         </form>
+        
     `;
 
     const form = document.getElementById('animeForm');
+    const loadingIndicator = Loading(); // Crea una instancia del componente de carga
+    section.appendChild(loadingIndicator); // Añade el componente al DOM
+
+
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
+
+         // Mostrar el indicador de carga
+         loadingIndicator.style.display = 'flex';
 
         const formData = new FormData(form);
         const selectedGenres = Array.from(form.genres.selectedOptions).map(option => option.value);
@@ -100,6 +115,8 @@ export const PostAnimes = () => {
         } catch (error) {
             console.error(error);
             showMessagePostAnimes ('Error adding anime', 'error');
+        } finally {
+            loadingIndicator.style.display = 'none';
         }
     });
     

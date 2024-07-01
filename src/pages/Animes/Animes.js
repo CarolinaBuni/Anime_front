@@ -97,21 +97,44 @@ export const printAnimes = ( animes, userFavorites = [], userWatchlist = [], isA
                title.textContent = anime.title;
                title.addEventListener( 'click', () => showAnimeDetails( anime._id ) );
 
-               const watch = document.createElement( 'img' );
-               watch.className = 'watch-anime';
-               watch.src = watchIconSrc;
-               watch.dataset.animeId = anime._id;
-               watch.addEventListener( 'click', ( event ) => addWatchlist( event ) );
+               // const watch = document.createElement( 'img' );
+               // watch.className = 'watch-anime';
+               // watch.src = watchIconSrc;
+               // watch.dataset.animeId = anime._id;
+               // watch.addEventListener( 'click', ( event ) => addWatchlist( event ) );
 
-               const like = document.createElement( 'img' );
-               like.className = 'heart-icon';
-               like.src = heartIconSrc;
-               like.dataset.animeId = anime._id;
-               like.addEventListener( 'click', ( event ) => addFavorites( event ) );
+               // const like = document.createElement( 'img' );
+               // like.className = 'heart-icon';
+               // like.src = heartIconSrc;
+               // like.dataset.animeId = anime._id;
+               // like.addEventListener( 'click', ( event ) => addFavorites( event ) );
 
-               titleContainer.appendChild( watch );
-               titleContainer.appendChild( title );
-               titleContainer.appendChild( like );
+               // titleContainer.appendChild( watch );
+               // titleContainer.appendChild( title );
+               // titleContainer.appendChild( like );
+               titleContainer.appendChild(title);
+               
+
+            const token = localStorage.getItem("token");
+            if (token) {
+               
+                const watch = document.createElement('img');
+                watch.className = 'watch-anime';
+                watch.src = watchIconSrc;
+                watch.dataset.animeId = anime._id;
+                watch.addEventListener('click', (event) => addWatchlist(event));
+
+                const like = document.createElement('img');
+                like.className = 'heart-icon';
+                like.src = heartIconSrc;
+                like.dataset.animeId = anime._id;
+                like.addEventListener('click', (event) => addFavorites(event));
+
+                titleContainer.appendChild(watch);
+                titleContainer.appendChild(like);
+            } else {
+               title.style.width = 'auto';
+            }
 
                // Si el usuario es admin, agregar el icono de eliminación
                if ( isAdmin ) {

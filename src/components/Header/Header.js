@@ -1,4 +1,5 @@
 import { getAnimes } from '../../pages/Animes/Animes';
+import { Home } from '../../pages/Home/Home';
 import { LoginRegistry } from '../../pages/LoginRegistry/LoginRegistry';
 import { PostAnimes } from '../../pages/PostAnimes/PostAnimes';
 import { getProfile } from '../../pages/Profile/Profile';
@@ -9,6 +10,7 @@ const routes = [
     {
         text: "Home",
         funcion: () => {
+            Home();
             removeSpecialClasses();
             getAnimes(true);
         }
@@ -31,7 +33,7 @@ const routes = [
 const removeSpecialClasses = () => {
     const section = document.querySelector('section');
     if (section) {
-        section.classList.remove('formSection', 'anime-detail-section');
+        section.classList.remove('formSection', 'anime-detail-section', 'profile-section');
     }
 };
 
@@ -40,8 +42,22 @@ export const Header = () => {
     header.innerHTML = "";
     const nav = document.createElement('nav');
 
-    const user = JSON.parse(localStorage.getItem('user'));
-    const isAdmin = user?.rol === 'admin';
+    const userJson = localStorage.getItem('user');
+    let user = null;
+    let isAdmin = false;
+
+    // Si userJson no es null, intentar parsearlo
+    if (userJson) {
+        try {
+            user = JSON.parse(userJson);
+            isAdmin = user?.rol === 'admin';
+        } catch (e) {
+            console.error("Error parsing user JSON:", e);
+            // Si hay un error al parsear, asegurarse de que user sea null y isAdmin sea false
+            user = null;
+            isAdmin = false;
+        }
+    }
 
     // Crea enlaces de navegación basados en las rutas definidas
     routes.forEach(route => {

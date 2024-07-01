@@ -22,6 +22,9 @@ export const API = async ({ endpoint, method = 'GET', payload = null }) => {
         throw new Error(errorData.message || 'Error during API call');
     }
 
-    return await response.json();
+    // return await response.json();
+    const responseData = await response.json();
+    console.log("API response:", responseData);
+    return responseData;
 };
 

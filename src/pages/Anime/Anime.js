@@ -1,8 +1,10 @@
+import { Loading } from '../../components/Loading/Loading';
 import { API } from '../../utils/API';
 import { showMessageAnime } from '../../utils/messages';
 import { configureDeleteModal } from '../../utils/modals';
 import { ratingToStars } from '../../utils/rating';
 import './Anime.css';
+
 
 // Fetch and display anime details
 export const showAnimeDetails = async (animeId) => {
@@ -101,6 +103,11 @@ const submitComment = async (animeId) => {
         alert('Please enter a valid title, comment and rating.');
         return;
     }
+
+    const section = document.querySelector('section');
+    const loadingIndicator = Loading(); // Crea una instancia del componente de carga
+    section.appendChild(loadingIndicator); // Añade el componente al DOM
+    loadingIndicator.style.display = 'flex';
 
     try {
         const token = localStorage.getItem('token');

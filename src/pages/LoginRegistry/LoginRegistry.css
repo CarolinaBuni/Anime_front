@@ -41,7 +41,7 @@ form>button {
 }
 
 .pointer-text {
-     color: #007BFF;
+     color: #007bff;
      cursor: pointer;
      text-decoration: none;
 }
@@ -58,6 +58,39 @@ form>button {
      color: #0ad1c8;
 }
 
+#messageModal {
+     display: none;
+     position: fixed;
+     z-index: 1;
+     left: 0;
+     top: 0;
+     width: 100%;
+     height: 100%;
+     overflow: auto;
+     background-color: rgb(0, 0, 0);
+     background-color: rgba(0, 0, 0, 0.4);
+     padding-top: 60px;
+}
+
+#closeLogin {
+     color: #aaa;
+     font-size: 28px;
+     font-weight: bold;
+     float: none;
+     position: absolute;
+     right: 20px;
+}
+
+#modal-content-login {
+     position: relative;
+     display: flex;
+     justify-content: space-around;
+     align-items: center;
+}
+
+#modalMessage {
+     font-size: small;
+}
 
 @media screen and (max-width: 912px) {
      #login {
@@ -70,5 +103,4 @@ form>button {
           border-radius: 8px;
           padding: 5px;
      }
-};
-
+}

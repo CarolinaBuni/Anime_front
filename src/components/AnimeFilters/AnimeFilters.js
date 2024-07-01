@@ -60,7 +60,6 @@ export const AnimeFilters = ( onFilter, onReset ) => {
      afterYearInput.placeholder = 'After year';
      afterYearInput.className = 'post-anime-form__input filter-input';
 
-
      const searchButton = document.createElement( 'input' );
      searchButton.type = 'submit';
      searchButton.value = 'Search';
@@ -82,6 +81,17 @@ export const AnimeFilters = ( onFilter, onReset ) => {
      form.appendChild( resetButton );
      container.appendChild( form );
 
+     // Restaurar valores de filtros desde localStorage
+     const savedFilters = JSON.parse( localStorage.getItem( 'animeFilters' ) );
+     if ( savedFilters ) {
+          titleInput.value = savedFilters.title || '';
+          genreSelect.value = savedFilters.genre || '';
+          statusSelect.value = savedFilters.status || '';
+          ratingSelect.value = savedFilters.rating || '';
+          beforeYearInput.value = savedFilters.beforeYear || '';
+          afterYearInput.value = savedFilters.afterYear || '';
+     }
+
 
      form.addEventListener( 'submit', ( event ) => {
           event.preventDefault();
@@ -91,18 +101,24 @@ export const AnimeFilters = ( onFilter, onReset ) => {
           const rating = ratingSelect.value;
           const beforeYear = beforeYearInput.value;
           const afterYear = afterYearInput.value;
-          onFilter( { title, genre, status, rating, beforeYear, afterYear } );
+
+
+          const filters = { title, genre, status, rating, beforeYear, afterYear };
+          localStorage.setItem( 'animeFilters', JSON.stringify( filters ) ); // Guardar filtros en localStorage
+          onFilter( filters );
      } );
 
      resetButton.addEventListener( 'click', () => {
-          titleInput.value = ''; 
-          genreSelect.value = ''; 
-          statusSelect.value = ''; 
-          ratingSelect.value = ''; 
-          beforeYearInput.value = ''; 
-          afterYearInput.value = ''; 
+          titleInput.value = '';
+          genreSelect.value = '';
+          statusSelect.value = '';
+          ratingSelect.value = '';
+          beforeYearInput.value = '';
+          afterYearInput.value = '';
 
-          onReset(); // Llamar a la función de reset
+
+          localStorage.removeItem( 'animeFilters' );
+          onReset();
      } );
 
      return container;

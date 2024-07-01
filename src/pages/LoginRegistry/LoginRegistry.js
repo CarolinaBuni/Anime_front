@@ -81,6 +81,13 @@ const Register = ( elementoPadre ) => {
 
      form.addEventListener( 'submit', ( e ) => {
           e.preventDefault();  
+
+          // Validar campos vacíos
+          if (!inputUserName.value || !inputEmail.value || !inputPassword.value) {
+               displayMessage(form, "Todos los campos son obligatorios", "error");
+               return;
+          }
+
           register( inputUserName.value, inputEmail.value, inputPassword.value, form, elementoPadre );
      } );
 
@@ -138,20 +145,14 @@ const register = async ( userName, email, password, form, elementoPadre ) => {
                payload: requestData
           } );
 
-          if ( data && data._id ) {
-               console.log( "Register successful:", data );
-               displayMessage( form, "Registrado exitosamente. Inicia sesión ahora.", "success" );
-
-               setTimeout( () => {
-                    elementoPadre.innerHTML = "";
-                    const formTitle = document.createElement( 'h2' );
-                    formTitle.textContent = "Iniciar Sesión";
-                    elementoPadre.appendChild( formTitle );
-                    Login( elementoPadre );
-               }, 1000 ); 
-
+          if (data && data.token) {
+               console.log("Register successful:", data);
+               localStorage.setItem('token', data.token);
+               localStorage.setItem('user', JSON.stringify(data.user)); // Guardamos el usuario en localStorage
+               Home(); // Redirigir al usuario a la pantalla principal
+               Header(); // Refrescar el header para reflejar el estado de autenticado
           } else {
-               displayMessage( form, "Error al registrarse" );
+               displayMessage(form, "Error al registrarse");
           }
 
      } catch ( error ) {
