@@ -1,9 +1,11 @@
+import { ConfigureDeleteModal } from '../../components/DeleteModal/DeleteModal';
 import { Loading } from '../../components/Loading/Loading';
+import { Ratin } from '../../components/Rating/Rating';
 import { API } from '../../utils/API';
 import { showMessageAnime } from '../../utils/messages';
-import { configureDeleteModal } from '../../utils/modals';
-import { ratingToStars } from '../../utils/rating';
+
 import './Anime.css';
+
 
 
 // Fetch and display anime details
@@ -88,7 +90,7 @@ const formatComment = (comment, isAdmin, user) => {
                 ${(isOwner) ? `<img src="./assets/edit-icon.png" alt="Edit" class="edit-comment-icon" data-comment-id="${comment._id}" data-anime-id="${comment.anime}">` : ''}
                 ${(isAdmin || isOwner) ? `<img src="./assets/borrar.png" alt="Delete" class="delete-comment-icon" data-comment-id="${comment._id}" data-anime-id="${comment.anime}">` : ''}
                 <p>${comment.text}</p>
-                <div class="comment-rating">${ratingToStars(comment.rating)}</div>
+                <div class="comment-rating">${Ratin(comment.rating)}</div>
             </div>
         </div>
     `;
@@ -133,12 +135,16 @@ const submitComment = async (animeId) => {
 };
 
 document.addEventListener('click', async (event) => {
+    
     if (event.target.classList.contains('delete-comment-icon')) {
         const commentId = event.target.dataset.commentId;
         const animeId = document.querySelector('.anime-details').dataset.animeId; 
 
         // Función para confirmar la eliminación
         const confirmDeleteComment = async () => {
+            
+
+            
             try {
                 const token = localStorage.getItem('token');
                 const response = await API({
@@ -168,7 +174,7 @@ document.addEventListener('click', async (event) => {
         };
 
         // Configurar y mostrar el modal de eliminación
-        configureDeleteModal('¿Estás seguro de que deseas eliminar este comentario? Esta acción no se puede deshacer.', confirmDeleteComment);
+        ConfigureDeleteModal('¿Estás seguro de que deseas eliminar este comentario? Esta acción no se puede deshacer.', confirmDeleteComment);
     }
 
     if (event.target.classList.contains('edit-comment-icon')) {
@@ -220,7 +226,10 @@ const updateComment = async (event) => {
         alert('Please enter a valid title, comment and rating.');
         return;
     }
-
+    const section = document.querySelector('section');
+    const loadingIndicator = Loading(); 
+    section.appendChild(loadingIndicator); 
+    loadingIndicator.style.display = 'flex';
     try {
         const token = localStorage.getItem('token');
         const response = await API({

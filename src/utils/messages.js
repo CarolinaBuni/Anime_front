@@ -1,7 +1,8 @@
-import { configureMessageModal } from "./modals";
+import { ConfigureMessageModal } from "../components/MessageModal/MessageModal";
+
 
 export function displayMessage( form, message, type = "error" ) {
-     configureMessageModal(message)
+     ConfigureMessageModal(message)
      // let messageElement = document.querySelector( '#message' );
      // if ( !messageElement ) {
      //      messageElement = document.createElement( "p" );

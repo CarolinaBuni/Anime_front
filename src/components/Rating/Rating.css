@@ -1,0 +1,4 @@
+.comment-rating img {
+     height: var(--comment-rating-size);
+     width: var(--comment-rating-size);
+}

@@ -1,4 +1,6 @@
-export function ratingToStars( rating ) {
+import './Rating.css';
+
+export function Ratin( rating ) {
      const fullStars = Math.floor( rating / 2 );
      const halfStar = ( rating % 2 ) >= 1 ? 1 : 0;
      const emptyStars = 5 - fullStars - halfStar;

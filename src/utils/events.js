@@ -1,9 +1,10 @@
 import { filterAnimes } from "../components/AnimeFilters/AnimeFilters";
+import { CreateDeleteModal } from "../components/DeleteModal/DeleteModal";
+import { Loading } from "../components/Loading/Loading";
 import { getAnimes } from "../pages/Animes/Animes";
 import { genresList } from "../pages/PostAnimes/PostAnimes";
 import { API } from "./API";
 import { showMessageAnime } from "./messages";
-import { createDeleteModal } from "./modals";
 
 export const addFavorites = async ( event ) => {
      try {
@@ -96,7 +97,7 @@ export const deleteAnime = async ( event ) => {
 
      let modal = document.getElementById( 'deleteModal' );
      if ( !modal ) {
-          modal = createDeleteModal();
+          modal = CreateDeleteModal();
      }
      modal.style.display = 'block';
 
@@ -113,6 +114,10 @@ export const deleteAnime = async ( event ) => {
 
      // Función para confirmar la eliminación
      const confirmDelete = async () => {
+          const section = document.querySelector('section');
+    const loadingIndicator = Loading(); 
+    section.appendChild(loadingIndicator); 
+    loadingIndicator.style.display = 'flex';
           try {
                const response = await API( {
                     endpoint: `/animes/${ animeId }`,
@@ -131,6 +136,7 @@ export const deleteAnime = async ( event ) => {
                console.error( "Failed to delete anime", error );
           } finally {
                closeModal();
+               loadingIndicator.style.display = 'none';
           }
      };
 
@@ -205,7 +211,7 @@ export const showEditForm = ( event, anime ) => {
           const section = document.querySelector( 'section' );
           section.classList.remove( 'formSection' );
           section.style.display = 'flex';
-          getAnimes();
+          getAnimes(filterAnimes);
      } );
 };
 
@@ -217,6 +223,11 @@ const editAnime = async ( event, animeId ) => {
      const selectedGenres = Array.from( form.genres.selectedOptions ).map( option => option.value );
      formData.set( 'genres', selectedGenres.join( ',' ) );
      formData.set( 'status', form.status.value.trim() );
+
+     const section = document.querySelector('section');
+    const loadingIndicator = Loading(); // Crea una instancia del componente de carga
+    section.appendChild(loadingIndicator); // Añade el componente al DOM
+    loadingIndicator.style.display = 'flex';
 
      try {
           const token = localStorage.getItem( 'token' );
@@ -234,7 +245,7 @@ const editAnime = async ( event, animeId ) => {
                throw new Error( 'Failed to update anime' );
           }
 
-          showMessageAnime ( 'Anime updated successfully!', 'success', 5000 );
+          showMessageAnime ( 'Anime updated successfully!', 'success' );
           form.reset();
           const section = document.querySelector( 'section' );
           section.classList.remove( 'formSection' );

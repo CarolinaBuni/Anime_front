@@ -1,0 +1,60 @@
+
+
+
+
+.close {
+     color: #aaa;
+     float: right;
+     font-size: 28px;
+     font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+     color: var(--background-tertiary-color);
+     cursor: pointer;
+     text-decoration: none;
+}
+
+.confirm-button,
+.cancel-button {
+     background-color: var(--primary-button-color);
+     border-radius: var(--border-radius-s);
+     border: none;
+     color: var(--font-secondary-color);
+     cursor: pointer;
+     font-weight: 700;
+     margin: var(--margin-s) 0;
+     padding: 1rem;
+     text-transform: uppercase;
+     transition: background-color 0.3s;
+     width: 100%;
+}
+
+.confirm-button {
+     background-color: var(--primary-button-color);
+}
+
+.confirm-button:hover,
+.cancel-button:hover {
+     background-color: var(--hover-tertiary-color);
+}
+
+
+
+#closeLogin {
+     color: #aaa;
+     font-size: 28px;
+     font-weight: bold;
+     float: none;
+     position: absolute;
+     right: 20px;
+}
+
+#modal-content-login {
+     position: relative;
+     display: flex;
+     justify-content: space-around;
+     align-items: center;
+}
+

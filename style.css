@@ -40,5 +40,7 @@
      --border-radius-xs: 5px;
      --border-radius-s: 0.25rem;
      --border-radius-m: 20px;
-     --border-radius-l: 50px
+     --border-radius-l: 50px;
+     --comment-icon-size: 30px;
+     --comment-rating-size: 20px;
 }

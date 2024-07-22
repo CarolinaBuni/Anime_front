@@ -1,9 +1,11 @@
 import { AnimeFilters, filterAnimes, resetFilters } from '../../components/AnimeFilters/AnimeFilters';
+import { Ratin } from '../../components/Rating/Rating';
 import { API } from '../../utils/API';
 import { addFavorites, addWatchlist, deleteAnime, showEditForm } from '../../utils/events';
-import { ratingToStars } from '../../utils/rating';
 import { showAnimeDetails } from '../Anime/Anime';
 import './Animes.css';
+
+
 
 export let allAnimes = []; // Guardar todos los animes para poder filtrar
 
@@ -62,7 +64,7 @@ export const printAnimes = ( animes, userFavorites = [], userWatchlist = [], isA
 
           animes.forEach( anime => {
                const genresString = anime.genres.join( ' | ' );
-               const starsDisplay = ratingToStars( anime.averageRating );
+               const starsDisplay = Ratin( anime.averageRating );
                const isFavorite = userFavorites.includes( anime._id );
                const heartIconSrc = isFavorite ? "./assets/fullHeart.png" : "./assets/emptyHeart.png";
                const isWatchList = userWatchlist.includes( anime._id );
