@@ -3,13 +3,12 @@ import { Loading } from '../../components/Loading/Loading';
 import { Ratin } from '../../components/Rating/Rating';
 import { API } from '../../utils/API';
 import { showMessageAnime } from '../../utils/messages';
+import { getAnimes } from '../Animes/Animes';
 
 import './Anime.css';
 
-
-
 // Fetch and display anime details
-export const showAnimeDetails = async (animeId) => {
+export const showAnimeDetails = async (animeId, includeFilters) => {
     try {
         const response = await API({
             endpoint: `/animes/${animeId}`,
@@ -64,15 +63,16 @@ export const showAnimeDetails = async (animeId) => {
 
         document.getElementById('backButton').addEventListener('click', () => {
             section.classList.remove('anime-detail-section');
-            import('../Animes/Animes').then(module => {
-                module.getAnimes();
+            getAnimes(true);
+            
             });
-        });
+        ;
     } catch (error) {
         console.error('Failed to fetch anime details:', error);
         showMessageAnime ('Failed to fetch anime details', 'error');
     }
 };
+
 
 const formatComment = (comment, isAdmin, user) => {
     const formattedDate = new Date(comment.date).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
