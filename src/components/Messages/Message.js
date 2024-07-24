@@ -1,18 +1,10 @@
-import { ConfigureMessageModal } from "../components/MessageModal/MessageModal";
-
+import { ConfigureMessageModal } from '../MessageModal/MessageModal';
+import './Message.css';
 
 export function displayMessage( form, message, type = "error" ) {
-     ConfigureMessageModal(message)
-     // let messageElement = document.querySelector( '#message' );
-     // if ( !messageElement ) {
-     //      messageElement = document.createElement( "p" );
-     //      messageElement.id = "message";
-     //      form.appendChild( messageElement );
-     // }
-     // messageElement.textContent = message;
-     // messageElement.className = type; 
+     ConfigureMessageModal(message);
 };
-// Función para mostrar mensajes personalizados
+
 export const showMessagePostAnimes = ( message, type ) => {
      const messageContainer = document.getElementById( 'messageContainer' );
      messageContainer.innerHTML = `<div class="message ${ type }">${ message }</div>`;
@@ -39,4 +31,3 @@ export function showMessageAnime( message, type ) {
           pError.remove();  
      }, 5000 );
 };
-

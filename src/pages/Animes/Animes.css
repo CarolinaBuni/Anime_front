@@ -15,18 +15,6 @@ section {
      flex-direction: column;
 }
 
-/* .animes-section {
-     align-items: center;
-     background-color: var(--background-tertiary-color);
-     display: flex;
-     flex-direction: row;
-     flex-wrap: wrap;
-     justify-content: space-evenly;
-     padding-bottom: 100px;
-     padding-top: 100px;
-     row-gap: 30px;
-} */
-
 .anime {
      align-items: center;
      display: flex;
@@ -105,10 +93,6 @@ section {
      gap: 5px;
 }
 
-.emptyHeart {
-     cursor: pointer;
-}
-
 .titleContainer {
      align-items: center;
      display: flex;
@@ -122,15 +106,6 @@ section {
      text-align: center;
 }
 
-.heart-icon {
-     cursor: pointer;
-     position: absolute;
-     right: 40px;
-     transition: all 0.5s;
-     width: 30px;
-     z-index: 100;
-}
-
 .heart-icon:hover,
 .delete-icon:hover,
 .edit-icon:hover,
@@ -138,32 +113,6 @@ section {
      transform: scale(1.1);
      transition: all 0.5s;
 }
-
-.delete-icon {
-     cursor: pointer;
-     position: absolute;
-     right: 0px;
-     transition: all 0.5s;
-     width: 30px;
-     z-index: 100;
-}
-
-.edit-icon {
-     cursor: pointer;
-     left: 0px;
-     position: absolute;
-     transition: all 0.5s;
-     width: 24px;
-}
-
-.watch-anime {
-     cursor: pointer;
-     left: 40px;
-     position: absolute;
-     transition: all 0.5s;
-     width: 30px;
-}
-
 
 .no-animes-message {
      color: var(--error-color);
@@ -189,6 +138,3 @@ section {
      }
 }
 
-
-
-/* Nest Hub Max 1280px */

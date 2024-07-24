@@ -1,0 +1,7 @@
+.watch-anime {
+     cursor: pointer;
+     left: 40px;
+     position: absolute;
+     transition: all 0.5s;
+     width: 30px;
+}

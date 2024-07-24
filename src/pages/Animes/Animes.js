@@ -1,11 +1,13 @@
 import { AnimeFilters, filterAnimes, resetFilters } from '../../components/AnimeFilters/AnimeFilters';
+import { DeleteAnimeModal } from '../../components/DeleteModal/DeleteModal';
+import { EditAnimeForm, editAnime } from '../../components/EditAnimeForm/EditAnimeForm';
+import { FavoriteButton } from '../../components/FavoriteButton/FavoriteButton';
 import { Ratin } from '../../components/Rating/Rating';
+import { WatchlistButton } from '../../components/WatchlistButton/WatchlistButton';
 import { API } from '../../utils/API';
-import { addFavorites, addWatchlist, deleteAnime, showEditForm } from '../../utils/events';
+// import { EditAnimeForm } from '../../utils/events';
 import { showAnimeDetails } from '../Anime/Anime';
 import './Animes.css';
-
-
 
 export let allAnimes = []; // Guardar todos los animes para poder filtrar
 
@@ -103,13 +105,13 @@ export const printAnimes = ( animes, userFavorites = [], userWatchlist = [], isA
                // watch.className = 'watch-anime';
                // watch.src = watchIconSrc;
                // watch.dataset.animeId = anime._id;
-               // watch.addEventListener( 'click', ( event ) => addWatchlist( event ) );
+               // watch.addEventListener( 'click', ( event ) => WatchlistButton( event ) );
 
                // const like = document.createElement( 'img' );
                // like.className = 'heart-icon';
                // like.src = heartIconSrc;
                // like.dataset.animeId = anime._id;
-               // like.addEventListener( 'click', ( event ) => addFavorites( event ) );
+               // like.addEventListener( 'click', ( event ) => FavoriteButton( event ) );
 
                // titleContainer.appendChild( watch );
                // titleContainer.appendChild( title );
@@ -124,13 +126,13 @@ export const printAnimes = ( animes, userFavorites = [], userWatchlist = [], isA
                 watch.className = 'watch-anime';
                 watch.src = watchIconSrc;
                 watch.dataset.animeId = anime._id;
-                watch.addEventListener('click', (event) => addWatchlist(event));
+                watch.addEventListener('click', (event) => WatchlistButton(event));
 
                 const like = document.createElement('img');
                 like.className = 'heart-icon';
                 like.src = heartIconSrc;
                 like.dataset.animeId = anime._id;
-                like.addEventListener('click', (event) => addFavorites(event));
+                like.addEventListener('click', (event) => FavoriteButton(event));
 
                 titleContainer.appendChild(watch);
                 titleContainer.appendChild(like);
@@ -145,7 +147,7 @@ export const printAnimes = ( animes, userFavorites = [], userWatchlist = [], isA
                     deleteIcon.src = './assets/borrar.png'; 
                     deleteIcon.alt = 'Delete';
                     deleteIcon.dataset.animeId = anime._id;
-                    deleteIcon.addEventListener( 'click', ( event ) => deleteAnime( event ) );
+                    deleteIcon.addEventListener( 'click', ( event ) => DeleteAnimeModal( event ) );
                     titleContainer.appendChild( deleteIcon );
 
                     const editIcon = document.createElement( 'img' );
@@ -153,7 +155,7 @@ export const printAnimes = ( animes, userFavorites = [], userWatchlist = [], isA
                     editIcon.src = './assets/edit-icon.png';
                     editIcon.alt = 'Edit';
                     editIcon.dataset.animeId = anime._id;
-                    editIcon.addEventListener( 'click', ( event ) => showEditForm( event, anime ) );
+                    editIcon.addEventListener( 'click', ( event ) => EditAnimeForm( anime, editAnime ) );
                     titleContainer.appendChild( editIcon );
                }
 

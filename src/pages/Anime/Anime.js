@@ -1,13 +1,11 @@
 import { ConfigureDeleteModal } from '../../components/DeleteModal/DeleteModal';
 import { Loading } from '../../components/Loading/Loading';
+import { displayMessage, showMessageAnime } from '../../components/Messages/Message';
 import { Ratin } from '../../components/Rating/Rating';
 import { API } from '../../utils/API';
-import { showMessageAnime } from '../../utils/messages';
 import { getAnimes } from '../Animes/Animes';
-
 import './Anime.css';
 
-// Fetch and display anime details
 export const showAnimeDetails = async (animeId, includeFilters) => {
     try {
         const response = await API({
@@ -96,13 +94,13 @@ const formatComment = (comment, isAdmin, user) => {
     `;
 };
 
-const submitComment = async (animeId) => {
+const submitComment = async (animeId, form) => {
     const title = document.getElementById('commentTitle').value;
     const text = document.getElementById('commentText').value;
     const rating = parseFloat(document.getElementById('commentRating').value);
 
     if (!title || !text || isNaN(rating) || rating < 0 || rating > 10) {
-        alert('Please enter a valid title, comment and rating.');
+        displayMessage( form, 'Please enter a valid title, comment and rating.');
         return;
     }
 
@@ -223,7 +221,7 @@ const updateComment = async (event) => {
     const rating = parseFloat(document.getElementById('editCommentRating').value);
 
     if (!title || !text || isNaN(rating) || rating < 0 || rating > 10) {
-        alert('Please enter a valid title, comment and rating.');
+        displayMessage( form, 'Please enter a valid title, comment and rating.');
         return;
     }
     const section = document.querySelector('section');

@@ -1,3 +1,5 @@
+import { API } from '../../utils/API';
+import { Loading } from '../Loading/Loading';
 import './DeleteModal.css';
 
 export const CreateDeleteModal = () => {
@@ -46,3 +48,63 @@ export const ConfigureDeleteModal = ( message, confirmCallback ) => {
 
      modal.style.display = 'block';
 };
+
+export const DeleteAnimeModal = (event) => {
+     const deleteIcon = event.target;
+     const animeId = deleteIcon.dataset.animeId;
+
+     let modal = document.getElementById( 'deleteModal' );
+     if ( !modal ) {
+          modal = CreateDeleteModal();
+     }
+     modal.style.display = 'block';
+
+     const confirmButton = modal.querySelector( '#confirmDelete' );
+     const cancelButton = modal.querySelector( '#cancelDelete' );
+     const closeButton = modal.querySelector( '.close' );
+
+     const closeModal = () => {
+          modal.style.display = 'none';
+          confirmButton.removeEventListener( 'click', confirmDelete );
+          cancelButton.removeEventListener( 'click', closeModal );
+          closeButton.removeEventListener( 'click', closeModal );
+     };
+
+     // Función para confirmar la eliminación
+     const confirmDelete = async () => {
+          const section = document.querySelector('section');
+    const loadingIndicator = Loading(); 
+    section.appendChild(loadingIndicator); 
+    loadingIndicator.style.display = 'flex';
+          try {
+               const response = await API( {
+                    endpoint: `/animes/${ animeId }`,
+                    method: 'DELETE'
+               } );
+
+               if ( response.message === "Anime eliminado con éxito" ) {
+                    const animeDiv = document.querySelector( `div[data-anime-id='${ animeId }']` );
+                    if ( animeDiv ) {
+                         animeDiv.remove();
+                    }
+               } else {
+                    console.error( "Failed to delete anime" );
+               }
+          } catch ( error ) {
+               console.error( "Failed to delete anime", error );
+          } finally {
+               closeModal();
+               loadingIndicator.style.display = 'none';
+          }
+     };
+
+     confirmButton.addEventListener( 'click', confirmDelete );
+     cancelButton.addEventListener( 'click', closeModal );
+     closeButton.addEventListener( 'click', closeModal );
+
+     window.onclick = ( event ) => {
+          if ( event.target == modal ) {
+               closeModal();
+          }
+     };
+}

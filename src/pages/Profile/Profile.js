@@ -1,10 +1,9 @@
-
-
 import { API } from "../../utils/API";
 import { printAnimes } from "../Animes/Animes";
 import "./Profile.css";
 import "../PostAnimes/PostAnimes.css"; 
 import { ConfigureDeleteModal } from "../../components/DeleteModal/DeleteModal";
+import { displayMessage } from "../../components/Messages/Message";
 
 
 export const getProfile = async () => {
@@ -94,30 +93,19 @@ const showProfile = (user) => {
 };
 
 const deleteAccount = async (userId) => {
-    const confirmDeleteAccount = async () => {
+    const confirmDeleteAccount = async (form) => {
         try {
-            // Obtener el token de autenticación
-            const token = localStorage.getItem('token');
-            // Hacer una solicitud para eliminar la cuenta del usuario
-            const response = await fetch(`https://anime-back-jet.vercel.app/api/v1/users/${userId}`, {
+            const responseData = await API({
+                endpoint: `/users/${userId}`,
                 method: 'DELETE',
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
             });
 
-            const responseData = await response.json();
-
-            if (!response.ok) {
-                throw new Error('Failed to delete account');
-            }
-            // Mostrar un mensaje de éxito y redirigir al usuario
-            alert('Cuenta eliminada con éxito');
+            displayMessage( form, "Cuenta eliminada" );
             localStorage.removeItem('token');
             localStorage.removeItem('user');
             window.location.href = '/'; 
         } catch (error) {
-            alert('Error al eliminar la cuenta');
+            displayMessage( form, 'Error al eliminar la cuenta');
         } finally {
             // Cerrar el modal de confirmación
             const modal = document.getElementById('deleteModal');

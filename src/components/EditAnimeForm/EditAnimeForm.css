@@ -1,0 +1,7 @@
+.edit-icon {
+     cursor: pointer;
+     left: 0px;
+     position: absolute;
+     transition: all 0.5s;
+     width: 24px;
+}

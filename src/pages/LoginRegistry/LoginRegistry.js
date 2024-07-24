@@ -1,6 +1,6 @@
 import { Header } from '../../components/Header/Header';
+import { displayMessage } from '../../components/Messages/Message';
 import { API } from '../../utils/API';
-import { displayMessage } from '../../utils/messages';
 import { Home } from '../Home/Home';
 import './LoginRegistry.css';
 

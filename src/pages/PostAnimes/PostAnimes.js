@@ -1,7 +1,7 @@
 import { Loading } from '../../components/Loading/Loading';
-import { showMessagePostAnimes } from '../../utils/messages';
+import { showMessagePostAnimes } from '../../components/Messages/Message';
+import { API } from '../../utils/API';
 import './PostAnimes.css';
-
 
 export const genresList = [
     'Action', 'Adventure', 'Science Fiction', 'Comedy', 'Drama', 'Slice of Life', 'Fantasy', 'Gore', 'Magic', 'Supernatural', 'Horror', 'Mystery', 'Psychological', 'Romance', 'Sci-Fi', 'Sports', 'Military', 'Historical', 'Thriller', 'Ecchi', 'Harem', 'Reverse Harem', 'Yaoi', 'Yuri', 'Moe', 'Shounen', 'Shoujo', 'Iyashikei', 'Seinen', 'Josei', 'Isekai', 'Magical Girl', 'Mecha', 'Cyberpunk', 'Space Opera', 'Martial Arts', 'Baseball', 'Soccer'
@@ -9,7 +9,7 @@ export const genresList = [
 genresList.sort();
 
 export const PostAnimes = () => {
-    const section = document.querySelector('section');
+    const section = document.querySelector( 'section' );
     section.className = "formSection";
     section.innerHTML = `
         <h1>Add new Anime</h1>
@@ -31,7 +31,7 @@ export const PostAnimes = () => {
             <div class="post-anime-form__field">
                 <label for="genres"><svg class="icon"><use xlink:href="#icon-genres"></use></svg><span class="hidden">Genres</span></label>
                 <select id="genres" name="genres" class="post-anime-form__input" multiple required>
-                    ${genresList.map(genre => `<option value="${genre}">${genre}</option>`).join('')}
+                    ${ genresList.map( genre => `<option value="${ genre }">${ genre }</option>` ).join( '' ) }
                 </select>
             </div>
 
@@ -78,47 +78,37 @@ export const PostAnimes = () => {
         
     `;
 
-    const form = document.getElementById('animeForm');
-    const loadingIndicator = Loading(); // Crea una instancia del componente de carga
-    section.appendChild(loadingIndicator); // Añade el componente al DOM
+    const form = document.getElementById( 'animeForm' );
+    const loadingIndicator = Loading();
+    section.appendChild( loadingIndicator );
 
-
-    form.addEventListener('submit', async (e) => {
+    form.addEventListener( 'submit', async ( e ) => {
         e.preventDefault();
 
-         // Mostrar el indicador de carga
-         loadingIndicator.style.display = 'flex';
+        // Mostrar el indicador de carga
+        loadingIndicator.style.display = 'flex';
 
-        const formData = new FormData(form);
-        const selectedGenres = Array.from(form.genres.selectedOptions).map(option => option.value);
-        formData.set('genres', selectedGenres.join(','));
-        formData.set('status', form.status.value.trim());
+        const formData = new FormData( form );
+        const selectedGenres = Array.from( form.genres.selectedOptions ).map( option => option.value );
+        formData.set( 'genres', selectedGenres.join( ',' ) );
+        formData.set( 'status', form.status.value.trim() );
 
         try {
-            const token = localStorage.getItem('token');
-            const response = await fetch('https://anime-back-jet.vercel.app/api/v1/animes', {
+            await API({
+                endpoint: '/animes',
                 method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                },
-                body: formData
+                payload: formData
             });
 
-            if (!response.ok) {
-                const errorData = await response.json();
-                console.error('Server response:', errorData);
-                throw new Error('Failed to add anime');
-            }
-
-            showMessagePostAnimes ('Anime added successfully!', 'success');
+            showMessagePostAnimes( 'Anime added successfully!', 'success' );
             form.reset();
-        } catch (error) {
-            console.error(error);
-            showMessagePostAnimes ('Error adding anime', 'error');
+        } catch ( error ) {
+            console.error( error );
+            showMessagePostAnimes( 'Error adding anime', 'error' );
         } finally {
             loadingIndicator.style.display = 'none';
         }
-    });
-    
+    } );
+
 };
 
