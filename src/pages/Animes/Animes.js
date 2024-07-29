@@ -17,7 +17,7 @@ export const getAnimes = async ( includeFilters = false ) => {
                endpoint: "/animes",
                method: "GET"
           } );
-          allAnimes = animes; 
+          allAnimes = animes;
           let userFavorites = [];
           let userWatchlist = [];
           const token = localStorage.getItem( "token" );
@@ -43,8 +43,8 @@ export const printAnimes = ( animes, userFavorites = [], userWatchlist = [], isA
      // Verificar si la lista de animes está vacía
      const hasAnimes = animes.length > 0;
 
-     sectionAnimes.classList.remove('.anime-detail-section')
-     sectionAnimes.innerHTML = ''; 
+     sectionAnimes.classList.remove( '.anime-detail-section' );
+     sectionAnimes.innerHTML = '';
 
      // Añadir filtros solo si no están ya presentes y se debe incluir filtros
      if ( includeFilters && !sectionAnimes.querySelector( '.filters-container' ) ) {
@@ -101,50 +101,35 @@ export const printAnimes = ( animes, userFavorites = [], userWatchlist = [], isA
                title.textContent = anime.title;
                title.addEventListener( 'click', () => showAnimeDetails( anime._id ) );
 
-               // const watch = document.createElement( 'img' );
-               // watch.className = 'watch-anime';
-               // watch.src = watchIconSrc;
-               // watch.dataset.animeId = anime._id;
-               // watch.addEventListener( 'click', ( event ) => WatchlistButton( event ) );
+               titleContainer.appendChild( title );
 
-               // const like = document.createElement( 'img' );
-               // like.className = 'heart-icon';
-               // like.src = heartIconSrc;
-               // like.dataset.animeId = anime._id;
-               // like.addEventListener( 'click', ( event ) => FavoriteButton( event ) );
 
-               // titleContainer.appendChild( watch );
-               // titleContainer.appendChild( title );
-               // titleContainer.appendChild( like );
-               titleContainer.appendChild(title);
-               
+               const token = localStorage.getItem( "token" );
+               if ( token ) {
 
-            const token = localStorage.getItem("token");
-            if (token) {
-               
-                const watch = document.createElement('img');
-                watch.className = 'watch-anime';
-                watch.src = watchIconSrc;
-                watch.dataset.animeId = anime._id;
-                watch.addEventListener('click', (event) => WatchlistButton(event));
+                    const watch = document.createElement( 'img' );
+                    watch.className = 'watch-anime';
+                    watch.src = watchIconSrc;
+                    watch.dataset.animeId = anime._id;
+                    watch.addEventListener( 'click', ( event ) => WatchlistButton( event ) );
 
-                const like = document.createElement('img');
-                like.className = 'heart-icon';
-                like.src = heartIconSrc;
-                like.dataset.animeId = anime._id;
-                like.addEventListener('click', (event) => FavoriteButton(event));
+                    const like = document.createElement( 'img' );
+                    like.className = 'heart-icon';
+                    like.src = heartIconSrc;
+                    like.dataset.animeId = anime._id;
+                    like.addEventListener( 'click', ( event ) => FavoriteButton( event ) );
 
-                titleContainer.appendChild(watch);
-                titleContainer.appendChild(like);
-            } else {
-               title.style.width = 'auto';
-            }
+                    titleContainer.appendChild( watch );
+                    titleContainer.appendChild( like );
+               } else {
+                    title.style.width = 'auto';
+               }
 
                // Si el usuario es admin, agregar el icono de eliminación
                if ( isAdmin ) {
                     const deleteIcon = document.createElement( 'img' );
                     deleteIcon.className = 'delete-icon';
-                    deleteIcon.src = './assets/borrar.png'; 
+                    deleteIcon.src = './assets/borrar.png';
                     deleteIcon.alt = 'Delete';
                     deleteIcon.dataset.animeId = anime._id;
                     deleteIcon.addEventListener( 'click', ( event ) => DeleteAnimeModal( event ) );
