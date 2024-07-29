@@ -1,0 +1,13 @@
+
+.filter-input {
+     background-color: var(--background-secondary-color);
+     border-radius: var(--border-radius-s);
+     border: none;
+     color: #ffffff;
+     padding: 1rem;
+}
+
+.filter-input:focus,
+.filter-input:hover {
+     background-color: var(--hover-seconday-color);
+}

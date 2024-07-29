@@ -1,4 +1,5 @@
 import { AnimeFilters, filterAnimes, resetFilters } from '../../components/AnimeFilters/AnimeFilters';
+import { DeleteIcon, EditIcon } from '../../components/AnimeIcons/AnimeIcons';
 import { DeleteAnimeModal } from '../../components/DeleteModal/DeleteModal';
 import { EditAnimeForm, editAnime } from '../../components/EditAnimeForm/EditAnimeForm';
 import { FavoriteButton } from '../../components/FavoriteButton/FavoriteButton';
@@ -8,6 +9,7 @@ import { API } from '../../utils/API';
 // import { EditAnimeForm } from '../../utils/events';
 import { showAnimeDetails } from '../Anime/Anime';
 import './Animes.css';
+
 
 export let allAnimes = []; // Guardar todos los animes para poder filtrar
 
@@ -127,20 +129,9 @@ export const printAnimes = ( animes, userFavorites = [], userWatchlist = [], isA
 
                // Si el usuario es admin, agregar el icono de eliminación
                if ( isAdmin ) {
-                    const deleteIcon = document.createElement( 'img' );
-                    deleteIcon.className = 'delete-icon';
-                    deleteIcon.src = './assets/borrar.png';
-                    deleteIcon.alt = 'Delete';
-                    deleteIcon.dataset.animeId = anime._id;
-                    deleteIcon.addEventListener( 'click', ( event ) => DeleteAnimeModal( event ) );
+                    const deleteIcon = DeleteIcon( anime, DeleteAnimeModal );
+                    const editIcon = EditIcon( anime, EditAnimeForm, editAnime );
                     titleContainer.appendChild( deleteIcon );
-
-                    const editIcon = document.createElement( 'img' );
-                    editIcon.className = 'edit-icon';
-                    editIcon.src = './assets/edit-icon.png';
-                    editIcon.alt = 'Edit';
-                    editIcon.dataset.animeId = anime._id;
-                    editIcon.addEventListener( 'click', ( event ) => EditAnimeForm( anime, editAnime ) );
                     titleContainer.appendChild( editIcon );
                }
 

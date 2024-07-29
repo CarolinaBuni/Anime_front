@@ -1,5 +1,7 @@
 import { allAnimes, getAnimes, printAnimes } from "../../pages/Animes/Animes";
 import { genresList } from "../../pages/PostAnimes/PostAnimes";
+import { ActionButtons } from "../ActionButtons/ActionButtons";
+import { YearFilters } from "../YearFilters/YearFilters";
 import "./AnimeFilters.css";
 
 export const AnimeFilters = ( onFilter, onReset ) => {
@@ -48,27 +50,11 @@ export const AnimeFilters = ( onFilter, onReset ) => {
           <option value="5">5 Stars</option>
      `;
 
-     // Filtro por before year
-     const beforeYearInput = document.createElement( 'input' );
-     beforeYearInput.type = 'number';
-     beforeYearInput.placeholder = 'Before year';
-     beforeYearInput.className = 'post-anime-form__input filter-input';
+     // Crear filtros de años
+     const { beforeYearInput, afterYearInput } = YearFilters();
 
-     // Filtro por after year
-     const afterYearInput = document.createElement( 'input' );
-     afterYearInput.type = 'number';
-     afterYearInput.placeholder = 'After year';
-     afterYearInput.className = 'post-anime-form__input filter-input';
-
-     const searchButton = document.createElement( 'input' );
-     searchButton.type = 'submit';
-     searchButton.value = 'Search';
-     searchButton.className = 'addAnime';
-
-     const resetButton = document.createElement( 'input' );
-     resetButton.type = 'button';
-     resetButton.value = 'Reset';
-     resetButton.className = 'cancel-button';
+     // Crear botones
+     const { searchButton, resetButton } = ActionButtons();
 
      fieldContainer.appendChild( titleInput );
      form.appendChild( genreSelect );
@@ -92,7 +78,6 @@ export const AnimeFilters = ( onFilter, onReset ) => {
           afterYearInput.value = savedFilters.afterYear || '';
      }
 
-
      form.addEventListener( 'submit', ( event ) => {
           event.preventDefault();
           const title = titleInput.value.trim();
@@ -115,7 +100,6 @@ export const AnimeFilters = ( onFilter, onReset ) => {
           ratingSelect.value = '';
           beforeYearInput.value = '';
           afterYearInput.value = '';
-
 
           localStorage.removeItem( 'animeFilters' );
           onReset();
@@ -178,5 +162,5 @@ export const filterAnimes = ( filters ) => {
 };
 
 export const resetFilters = () => {
-     getAnimes( true ); // Llamar a getAnimes con includeFilters=true para restablecer la lista original con los filtros
+     getAnimes( true ); 
 };
