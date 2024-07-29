@@ -2,7 +2,7 @@ import { AnimeFilters, filterAnimes, resetFilters } from '../../components/Anime
 import { DeleteAnimeModal } from '../../components/DeleteModal/DeleteModal';
 import { EditAnimeForm, editAnime } from '../../components/EditAnimeForm/EditAnimeForm';
 import { FavoriteButton } from '../../components/FavoriteButton/FavoriteButton';
-import { Ratin } from '../../components/Rating/Rating';
+import { Rating } from '../../components/Rating/Rating';
 import { WatchlistButton } from '../../components/WatchlistButton/WatchlistButton';
 import { API } from '../../utils/API';
 // import { EditAnimeForm } from '../../utils/events';
@@ -66,7 +66,7 @@ export const printAnimes = ( animes, userFavorites = [], userWatchlist = [], isA
 
           animes.forEach( anime => {
                const genresString = anime.genres.join( ' | ' );
-               const starsDisplay = Ratin( anime.averageRating );
+               const starsDisplay = Rating( anime.averageRating );
                const isFavorite = userFavorites.includes( anime._id );
                const heartIconSrc = isFavorite ? "./assets/fullHeart.png" : "./assets/emptyHeart.png";
                const isWatchList = userWatchlist.includes( anime._id );

@@ -1,7 +1,7 @@
 import { ConfigureDeleteModal } from '../../components/DeleteModal/DeleteModal';
 import { Loading } from '../../components/Loading/Loading';
 import { displayMessage, showMessageAnime } from '../../components/Messages/Message';
-import { Ratin } from '../../components/Rating/Rating';
+import { Rating } from '../../components/Rating/Rating';
 import { API } from '../../utils/API';
 import { getAnimes } from '../Animes/Animes';
 import './Anime.css';
@@ -9,7 +9,7 @@ import './Anime.css';
 export const showAnimeDetails = async (animeId, includeFilters) => {
     try {
         const response = await API({
-            endpoint: `/animes/${animeId}`,
+            endpoint: `/animes/id/${animeId}`,
             method: 'GET'
         });
 
@@ -88,7 +88,7 @@ const formatComment = (comment, isAdmin, user) => {
                 ${(isOwner) ? `<img src="./assets/edit-icon.png" alt="Edit" class="edit-comment-icon" data-comment-id="${comment._id}" data-anime-id="${comment.anime}">` : ''}
                 ${(isAdmin || isOwner) ? `<img src="./assets/borrar.png" alt="Delete" class="delete-comment-icon" data-comment-id="${comment._id}" data-anime-id="${comment.anime}">` : ''}
                 <p>${comment.text}</p>
-                <div class="comment-rating">${Ratin(comment.rating)}</div>
+                <div class="comment-rating">${Rating(comment.rating)}</div>
             </div>
         </div>
     `;

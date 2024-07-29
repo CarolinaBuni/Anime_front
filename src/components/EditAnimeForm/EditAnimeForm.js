@@ -156,6 +156,7 @@ export const editAnime = async ( event, animeId ) => {
 
     const section = document.querySelector( 'section' );
     const loadingIndicator = Loading(); 
+    section.appendChild( loadingIndicator ); 
     loadingIndicator.style.display = 'flex';
 
     try {
@@ -166,7 +167,6 @@ export const editAnime = async ( event, animeId ) => {
             payload: formData
         } );
 
-        showMessageAnime( 'Anime updated successfully!', 'success' );
         form.reset();
         const section = document.querySelector( 'section' );
         section.classList.remove( 'formSection' );
