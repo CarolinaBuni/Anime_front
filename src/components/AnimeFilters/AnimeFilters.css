@@ -15,6 +15,7 @@
 
 
 
+
 @media screen and (max-width: 913px) {
      .filters-form {
           display: grid;
@@ -35,7 +36,7 @@
      }
 }
 
-@media (min-width: 1024px) and (max-width: 1024px){
+@media (min-width: 914px) and (max-width: 1276px){
      .filters-form {
           display: grid;
           gap: var(--formGap);

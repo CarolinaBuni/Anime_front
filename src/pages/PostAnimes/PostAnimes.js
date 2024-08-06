@@ -3,6 +3,7 @@ import { showMessagePostAnimes } from '../../components/Messages/Message';
 import { API } from '../../utils/API';
 import './PostAnimes.css';
 
+
 export const genresList = [
     'Action', 'Adventure', 'Science Fiction', 'Comedy', 'Drama', 'Slice of Life', 'Fantasy', 'Gore', 'Magic', 'Supernatural', 'Horror', 'Mystery', 'Psychological', 'Romance', 'Sci-Fi', 'Sports', 'Military', 'Historical', 'Thriller', 'Ecchi', 'Harem', 'Reverse Harem', 'Yaoi', 'Yuri', 'Moe', 'Shounen', 'Shoujo', 'Iyashikei', 'Seinen', 'Josei', 'Isekai', 'Magical Girl', 'Mecha', 'Cyberpunk', 'Space Opera', 'Martial Arts', 'Baseball', 'Soccer'
 ];
@@ -39,8 +40,8 @@ export const PostAnimes = () => {
                 <label for="episodes"><svg class="icon"><use xlink:href="#icon-episodes"></use></svg><span class="hidden">Episodes</span></label>
                 <input type="number" id="episodes" name="episodes" class="post-anime-form__input" placeholder="Episodes" required>
             </div>
-
-             <div class="post-anime-form__field">
+                
+              <div class="post-anime-form__field">
                 <label for="status"><svg class="icon"><use xlink:href="#icon-status"></use></svg><span class="hidden">Status</span></label>
                 <select id="status" name="status" class="post-anime-form__input" required>
                     <option value="" disabled selected hidden>Status</option>
@@ -48,7 +49,7 @@ export const PostAnimes = () => {
                     <option value="Completed">Completed</option>
                     <option value="Upcoming">Upcoming</option>
                 </select>
-            </div>
+            </div> 
 
             <div class="post-anime-form__field">
                 <label for="releaseYear"> <svg class="icon"><use xlink:href="#icon-releaseYear"></use></svg><span class="hidden">Release Year</span></label>

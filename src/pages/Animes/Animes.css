@@ -119,7 +119,7 @@ section {
 }
 
 
-@media screen and (max-width: 390px) {
+@media screen and (max-width: 430px) {
      .imgContainer {
           width: 100%;
      }
@@ -138,3 +138,27 @@ section {
      }
 }
 
+@media screen and (min-width: 768px) and (max-width: 912px) {
+     section {
+          padding: 0 50px;
+     }
+
+     #app > section > div.filters-container > form {
+          grid-template-columns: 300px 300px;
+     }
+
+     .anime {
+          height: auto;
+          width: 80%;
+     }
+     #app > section > div > div.animeInfo > div > h2 {
+          font-size: xxx-large;
+     }
+     #app > section > div > div.animeInfo > p {
+          font-size: larger;
+     }
+}
+
+/* 1114px 705px
+
+max 1276px
