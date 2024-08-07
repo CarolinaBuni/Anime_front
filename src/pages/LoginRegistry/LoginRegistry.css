@@ -14,11 +14,11 @@
 }
 
 form {
-     align-items: center;
+     align-items: center !important;
      display: flex;
      flex-direction: column;
      gap: var(--gap-M);
-     justify-content: center;
+     justify-content: center !important;
 }
 
 #error {
